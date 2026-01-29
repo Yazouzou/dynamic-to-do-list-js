@@ -1,3 +1,4 @@
+// Wait for the DOM to fully load before running the script
 document.addEventListener('DOMContentLoaded', function () {
 
     // Select DOM elements
@@ -7,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to add a new task
     function addTask() {
+        // Get and trim input value
         const taskText = taskInput.value.trim();
 
         // Check if input is empty
@@ -15,11 +17,11 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Create list item
+        // Create a new list item
         const li = document.createElement('li');
         li.textContent = taskText;
 
-        // Create remove button
+        // Create a remove button
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
         removeButton.className = 'remove-btn';
@@ -29,18 +31,20 @@ document.addEventListener('DOMContentLoaded', function () {
             taskList.removeChild(li);
         };
 
-        // Append elements
+        // Append remove button to list item
         li.appendChild(removeButton);
+
+        // Append list item to task list
         taskList.appendChild(li);
 
-        // Clear input
+        // Clear the input field
         taskInput.value = '';
     }
 
-    // Button click event
+    // Add task when button is clicked
     addButton.addEventListener('click', addTask);
 
-    // Enter key event
+    // Add task when Enter key is pressed
     taskInput.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
             addTask();
